@@ -9,10 +9,12 @@ import Nav from './components/Nav';
 function App() {
   return (
     <>
+    <div className='topcontainer'>
       <Myheader/>
       <Nav />
-      <Main />
-      <Footer />
+    </div>
+      <Main/>
+      <Footer/>
     </>
   );
 }
