@@ -1,0 +1,248 @@
+  import React from "react";
+
+function GoalForm(props) {
+  const [formData, setFormData] = React.useState({ goal: "", by: "" });
+
+  function changeHandler(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
+  function submitHandler(e) {
+    e.preventDefault();
+    props.onAdd(formData);
+    setFormData({ goal: "", by: "" });
+  };
+
+  return (
+    <>
+      <h1>My Little Lemon Goals</h1>
+      <form onSubmit={submitHandler}>
+        <input type="text" name="goal" placeholder="Goal" value={formData.goal} onChange={changeHandler} />
+        <input type="text" name="by" placeholder="By..." value={formData.by} onChange={changeHandler} />
+        <button>Submit Goal</button>
+      </form>
+    </>
+  )
+}
+
+function ListOfGoals(props) {
+  return (
+    <ul>
+      {props.allGoals.map((g) => (
+        <li key={g.goal}>
+          <span>My goal is to {g.goal}, by {g.by}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+
+export default function App() {
+  const [allGoals, updateAllGoals] = React.useState([]);
+
+  function addGoal(goal){
+    updateAllGoals([...allGoals, goal])
+  }
+
+  return (
+    <div className="App">
+      <GoalForm onAdd={addGoal} />
+      <ListOfGoals allGoals={allGoals} />
+    </div>
+  )
+}
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+import { useReducer } from "react"
+import "./App.css"
+
+const reducer = (state, action) => {
+  if (action.type === "buy_ingredients") return { money: state.money - 10 };
+  if (action.type === "sell_a_meal") return { money: state.money + 10 }
+  return state
+}
+
+function App() {
+  const initialState = { money: 100 }
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  return (
+    <div className="App">
+      <h1>Wallet: {state.money}</h1>
+      <div>
+        <button onClick={() => dispatch({ type: "buy_ingredients" })}>Shopping for veggies!</button>
+        <button onClick={() => dispatch({ type: "sell_a_meal" })}>Serve a meal to the customer</button>
+      </div>
+    </div>
+  )
+}
+
+export default App
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+import React, { useState } from "react";
+
+// function TaskList({tasks}){
+//     return(
+//         <div>
+//         {tasks.map(task => {
+//           return <div key={task}>
+//           <h1>{task.id} {task.task}</h1>
+//           </div>;
+//         })}
+//       </div>
+//     )
+// }
+
+// function Menu() {
+//  const [tasks, setTasks] = useState([
+//   { id: 1, task: "Go shopping", done: true },
+//   { id: 2, task: "Wash dishes", done: false },
+// ]);
+
+//  return (
+//  <TaskList tasks={tasks} />
+//   )
+// }
+
+// export default Menu
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+// function App() {
+//   const [name, setName] = useState("");
+
+//   const handleChange = (event) => {
+//     setName(event.target.value);
+//   };
+
+//   return (
+//     <div>
+//       <input type="text" onChange={handleChange} value={name} />
+//       <h1>Your name is: {name}</h1>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+// function Dog() {
+//     return (
+//         <>
+//         <Puppy name="Max" bowlShape="square" bowlStatus="full" />
+//         <Puppy name="Leo" bowlShape="circle" bowlStatus="empty" />
+//         </>
+//     );
+// };
+
+
+// function Puppy(props) {
+//     return (
+//         <div>
+//             {props.name} has <Bowl bowlShape={props.bowlShape} bowlStatus={props.bowlStatus} />
+//         </div>
+//     );
+// };
+
+// function Bowl(props) {
+//     return (
+//         <span>
+//             {props.bowlShape}-shaped bowl, and it's currently {props.bowlStatus}
+//         </span>
+//     );
+// };
+
+// export default Dog
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+function GoalForm(props) {
+
+    const [formData, setFormData] = useState({ goal: "", by: "" })
+
+    function changeHandler(e) {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        props.onAdd(formData)
+        setFormData({ goal: "", by: "" })
+    }
+
+    function deleteList(e) {
+        e.preventDefault()
+        props.onDelete()
+        setFormData({ goal: "", by: "" })
+    }
+
+    function deleteLast(e) {
+        e.preventDefault()
+        props.onDeleteLast()
+        setFormData({ goal: "", by: "" })
+    }
+
+
+    return (
+        <>
+            <h1>My Little Lemon Goal Form</h1>
+            <form onSubmit={handleSubmit}>
+                <input name="goal" type="text" placeholder="Goal..." value={formData.goal} onChange={changeHandler}></input>
+                <input name="by" type="text" placeholder="By..." value={formData.by} onChange={changeHandler}></input>
+                <button>---Submit My Goal---</button>
+                <button onClick={deleteList}>---Delete All List---</button>
+                <button onClick={deleteLast}>---Delete Last Item---</button>
+            </form>
+        </>
+    )
+}
+
+function ListOfGoals(props) {
+
+    return (
+        <ul>
+            {props.allGoals.map((g) => (
+                <li key={g.goal}>
+                    <span>My goal is to {g.goal}, by {g.by}.</span>
+                </li>
+            ))}
+        </ul>
+    )
+}
+
+
+
+function Form() {
+
+    const [allGoals, setAllGoals] = useState([])
+    function addGoal(formData) {
+        setAllGoals([...allGoals, formData])
+    }
+
+    function deleteGoal() {
+        setAllGoals([])
+    }
+
+    const deleteLast = () => {
+        allGoals.pop()
+        setAllGoals([...allGoals])
+    }
+
+
+return (
+    <>
+        <GoalForm onAdd={addGoal} onDelete={deleteGoal} onDeleteLast={deleteLast} />
+        <ListOfGoals allGoals={allGoals} />
+    </>
+)
+}
+
+export default Form
