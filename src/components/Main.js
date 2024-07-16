@@ -1,19 +1,19 @@
 import React from 'react'
 
-import Main_1 from "./Main_1"
-import Main_2 from './Main_2'
-import Main_3 from './Main_3'
-import Main_4 from './Main_4'
+import Main1 from "./Main1"
+import Main2 from './Main2'
+import Main3 from './Main3'
+import Main4 from './Main4'
 import Footer from './Footer'
 
 
 function Main() {
     return (
         <>
-            <Main_1/>
-            <Main_2/>
-            <Main_3/>
-            <Main_4/>
+            <Main1/>
+            <Main2/>
+            <Main3/>
+            <Main4/>
             <Footer/>
         </>
     )

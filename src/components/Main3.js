@@ -1,6 +1,6 @@
 
 
-function Main_3(){
+function Main3(){
     return(
         <div>
         <h1 id='testimonials_h1'>Testimonials!</h1>
@@ -26,4 +26,4 @@ function Main_3(){
     </div>
     )
 }
-export default Main_3
+export default Main3

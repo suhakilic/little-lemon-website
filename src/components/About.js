@@ -1,10 +1,10 @@
-import Main_4 from "./Main_4";
+import Main4 from "./Main4";
 
 
 function About() {
     return (
         <div className="about-js">
-            <Main_4 />
+            <Main4 />
         </div>
     )
 }

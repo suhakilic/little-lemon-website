@@ -4,7 +4,7 @@ import img_lemondessert from "../assets/lemon dessert.jpg"
 import Promo from './Promo'
 import { Link } from 'react-router-dom'
 
-function Main_2() {
+function Main2() {
     return (
         <div className='specials'>
             <h1>This week specials!</h1>
@@ -37,4 +37,4 @@ function Main_2() {
     )
 }
 
-export default Main_2
+export default Main2

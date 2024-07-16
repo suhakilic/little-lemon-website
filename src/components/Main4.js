@@ -1,6 +1,6 @@
 import img_restaurant from "../assets/restaurant.jpg"
 
-function Main_4(){
+function Main4(){
     return(
         <div className='about-us'>
                 <div className='hero-text'>
@@ -18,4 +18,4 @@ function Main_4(){
     )
 }
 
-export default Main_4
+export default Main4
